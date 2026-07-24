@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n, arr[100];
+
+    cout << "Enter the number of elements: ";
+    cin >> n;
+
+    cout << "Enter the rotated sorted array elements: ";
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+
+    int low = 0;
+    int high = n - 1;
+    int answer = arr[0];
+
+    while (low <= high)
+    {
+        if (arr[low] <= arr[high])
+        {
+            if (arr[low] < answer)
+            {
+                answer = arr[low];
+            }
+            break;
+        }
+
+        int mid = low + (high - low) / 2;
+
+        if (arr[low] <= arr[mid])
+        {
+            if (arr[low] < answer)
+            {
+                answer = arr[low];
+            }
+
+            low = mid + 1;
+        }
+        else
+        {
+            if (arr[mid] < answer)
+            {
+                answer = arr[mid];
+            }
+
+            high = mid - 1;
+        }
+    }
+
+    cout << "Minimum Element = " << answer;
+
+    return 0;
+}
